@@ -1,0 +1,28 @@
+const express = require('express')
+const app = express()
+const portNo = 3000
+
+app.get('/', (req, res) => {
+    if (!req.query.q){
+        res.send(
+            '<p><a href="?q=6">六面体のサイコロ</a><br/>' + '<a href="?q=12">十二面体のサイコロ</a></p>'
+        )
+    } else {
+        const q = parseInt(req.query.q, 10)
+        res.send(
+            '今回の値は...' + dice(q)
+        )
+    }
+})
+
+app.get('/dice/:num', (req, res) => {
+    res.send('今回の値は...' + dice(req.params.num))
+})
+
+function dice (n) {
+    return Math.floor(Math.random() * n) + 1
+}
+
+app.listen(portNo, () => {
+    console.log('起動しました', `http://localhost:${portNo}`)
+})
