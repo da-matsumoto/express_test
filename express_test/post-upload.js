@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.use('/pub', express.static(pubDir))
 
 app.post('/', uploader.single('aFile'), (req, res) => {
-    console.log('ファイルを受け付けました')
+    console.log('ファイルを受け付けましたよー')
     console.log('オリジナルファイル名：', req.file.originalname)
     console.log('保存したパス：', req.file.path)
     if (req.file.mimetype !== 'image/png') {
